@@ -4,7 +4,7 @@ Browser Agent using Azure OpenAI and Playwright with ReAct-style loop.
 This module implements a browser agent that uses Azure OpenAI's LLM to reason
 about browser interactions and execute actions using Playwright.
 """
-
+import datetime
 import os
 import json
 from typing import Dict, List, Any, Optional
@@ -106,7 +106,15 @@ class BrowserAgent:
                 return {"success": True, "result": text}
             
             elif action == "screenshot":
-                path = params.get("path", "screenshot.png")
+                # Ensure screenshot folder exists
+                screenshot_dir = "playwright-screenshots"
+                os.makedirs(screenshot_dir, exist_ok=True)
+                # Generate timestamped filename
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                base_name = params.get("path", "screenshot.png")
+                name, ext = os.path.splitext(base_name)
+                filename = f"{name}_{timestamp}{ext}"
+                path = os.path.join(screenshot_dir, filename)
                 self.page.screenshot(path=path)
                 return {"success": True, "result": f"Screenshot saved to {path}"}
             

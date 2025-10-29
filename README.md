@@ -84,6 +84,12 @@ result = agent.run(task, headless=False)
 print(result)
 ```
 
+## Screenshot Saving
+
+Screenshots taken by the agent are automatically saved in the `playwright-screenshots` folder with a timestamped filename (e.g., `screenshot_20251029_153045.png`).
+
+This ensures all screenshots are organized and uniquely named for each run.
+
 ## How It Works
 
 The browser agent uses a **ReAct (Reasoning + Acting)** loop:
