@@ -95,31 +95,31 @@ def test_browser_actions():
                 
                 # Test navigate action
                 result = agent.execute_action("navigate", {"url": "https://example.com"})
-                assert result["success"] == True, "Navigate should succeed"
+                assert result["success"], "Navigate should succeed"
                 mock_page.goto.assert_called_once_with("https://example.com")
                 print("✓ Navigate action works")
                 
                 # Test click action
                 result = agent.execute_action("click", {"selector": "button"})
-                assert result["success"] == True, "Click should succeed"
+                assert result["success"], "Click should succeed"
                 mock_page.click.assert_called_once_with("button")
                 print("✓ Click action works")
                 
                 # Test type action
                 result = agent.execute_action("type", {"selector": "input", "text": "test"})
-                assert result["success"] == True, "Type should succeed"
+                assert result["success"], "Type should succeed"
                 mock_page.fill.assert_called_once_with("input", "test")
                 print("✓ Type action works")
                 
                 # Test get_text action
                 result = agent.execute_action("get_text", {"selector": "h1"})
-                assert result["success"] == True, "Get text should succeed"
+                assert result["success"], "Get text should succeed"
                 assert result["result"] == "Example Domain"
                 print("✓ Get text action works")
                 
                 # Test unknown action
                 result = agent.execute_action("unknown", {})
-                assert result["success"] == False, "Unknown action should fail"
+                assert not result["success"], "Unknown action should fail"
                 print("✓ Unknown action handling works")
                 
         return True

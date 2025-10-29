@@ -11,6 +11,8 @@ from browser_agent import BrowserAgent
 def demo_agent_structure():
     """Demonstrate the agent's structure and capabilities."""
     
+    ACTION_NAME_WIDTH = 12  # Width for formatting action names
+    
     print("=" * 70)
     print("Browser Agent Demo - Structure and Capabilities")
     print("=" * 70)
@@ -26,7 +28,7 @@ def demo_agent_structure():
     }
     
     for action, description in actions.items():
-        print(f"   • {action:12} - {description}")
+        print(f"   • {action:{ACTION_NAME_WIDTH}} - {description}")
     
     print("\n2. REACT LOOP PROCESS:")
     print("-" * 70)
